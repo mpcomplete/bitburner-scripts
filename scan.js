@@ -1,51 +1,108 @@
-let doc = eval("document"),
-    f = ["CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z", "w0r1d_d43m0n"],
-    css = `<style id="scanCSS">
-        .sc {white-space:pre; color:#ccc; font:14px monospace; line-height: 16px; }
-        .sc .s {color:#080;cursor:pointer;text-decoration:underline}
-        .sc .f {color:#088}
-        .sc .r {color:#6f3}
-        .sc .r.f {color:#0ff}
-        .sc .r::before {color:#6f3}
-        .sc .hack {display:inline-block; font:12px monospace}
-        .sc .red {color:red;}
-        .sc .green {color:green;}
+/**
+ * @param {NS} ns
+ * @returns interactive server map
+ */
+export function main(ns) {
+    const factionServers = ["CSEC", "avmnite-02h", "I.I.I.I", "run4theh111z", "w0r1d_d43m0n", "fulcrumassets"],
+        css = `    <style id="scanCSS">
+        .serverscan {white-space:pre; color:#ccc; font:14px monospace; line-height: 16px; }
+        .serverscan .server {color:#080;cursor:pointer;text-decoration:underline}
+        .serverscan .faction {color:#088}
+        .serverscan .rooted {color:#6f3}
+        .serverscan .rooted.faction {color:#0ff}
+        .serverscan .rooted::before {color:#6f3}
+        .serverscan .hack {display:inline-block; font:12px monospace}
+        .serverscan .red {color:red;}
+        .serverscan .green {color:green;}
+        .serverscan .backdoor {color:#6f3; font:12px monospace}
+        .serverscan .backdoor > a {cursor:pointer; text-decoration:underline;}
+        .serverscan .cct {color:#0ff;}
     </style>`,
-    tprint = html => doc.getElementById("terminal").insertAdjacentHTML('beforeend', `<li>${html}</li>`);
-/** @param {NS} ns **/
-export let main = ns => {
-    let tIn = doc.getElementById("terminal-input"),
-        tEv = tIn[Object.keys(tIn)[1]];
-    doc.head.insertAdjacentHTML('beforeend', doc.getElementById("scanCSS") ? "" : css);
-    let s = ["home"],
-        p = [""],
-        r = { home: "home" },
-        myHack = ns.getHackingLevel(),
-        fName = x => {
-            let reqHack = ns.getServerRequiredHackingLevel(x);
-            return `<a class="s${f.includes(x) ? " f" : ""}${ns.hasRootAccess(x) ? " r" : ""}">${x}</a>` +
-                ` <span class="hack ${(reqHack <= myHack ? 'green' : 'red')}">(${reqHack})</span>` +
-                `${' @'.repeat(ns.ls(x, ".cct").length)}`;
-        };
-    let tcommand = x => {
-        tIn.value = x;
-        tEv.onChange({ target: tIn });
-        tEv.onKeyDown({ keyCode: "13", preventDefault: () => 0 });
-    };
+        doc = eval("document"),
+        terminalInsert = html => doc.getElementById("terminal").insertAdjacentHTML('beforeend', `<li>${html}</li>`),
+        terminalInput = doc.getElementById("terminal-input"),
+        terminalEventHandlerKey = Object.keys(terminalInput)[1],
+        setNavCommand = async inputValue => {
+            terminalInput.value = inputValue
+            terminalInput[terminalEventHandlerKey].onChange({ target: terminalInput })
+            terminalInput.focus()
+            await terminalInput[terminalEventHandlerKey].onKeyDown({ key: 'Enter', preventDefault: () => 0 })
+        },
+        myHackLevel = ns.getHackingLevel(),
+        serverInfo = (serverName) => {
+            // Costs 2 GB. If you can't don't need backdoor links, uncomment and use the alternate implementations below
+            return ns.getServer(serverName)
+            /* return {
+                requiredHackingSkill: ns.getServerRequiredHackingLevel(serverName),
+                hasAdminRights: ns.hasRootAccess(serverName),
+                purchasedByPlayer: serverName.includes('daemon') || serverName.includes('hacknet'),
+                backdoorInstalled: true // No way of knowing without ns.getServer
+            } */
+        },
+        createServerEntry = serverName => {
+            let server = serverInfo(serverName),
+                requiredHackLevel = server.requiredHackingSkill,
+                rooted = server.hasAdminRights,
+                canHack = requiredHackLevel <= myHackLevel,
+                shouldBackdoor = !server?.backdoorInstalled && canHack && serverName != 'home' && rooted && !server.purchasedByPlayer,
+                contracts = ns.ls(serverName, ".cct")
 
-    let addSc = (x = s[0], p1 = ["\n"], o = p1.join("") + fName(x)) => {
-        for (let i = 0; i < s.length; i++) {
-            if (p[i] != x) continue;
-            let p2 = p1.slice();
-            p2[p2.length - 1] = p2[p2.push(p.slice(i + 1).includes(p[i]) ? "├╴" : "└╴") - 2].replace("├╴", "│ ").replace("└╴", "  ");
-            o += addSc(s[i], p2);
+            return `<span id="${serverName}">`
+                + `<a class="server${factionServers.includes(serverName) ? " faction" : ""}`
+                + `${rooted ? " rooted" : ""}">${serverName}</a>`
+                + (server.purchasedByPlayer ? '' : ` <span class="hack ${(canHack ? 'green' : 'red')}">(${requiredHackLevel})</span>`)
+                + `${(shouldBackdoor ? ' <span class="backdoor">[<a>backdoor</a>]</span>' : '')}`
+                + ` ${contracts.map(c => `<span class="cct" title="${c}">@</span>`)}`
+                + "</span>"
+        },
+        buildOutput = (parent = servers[0], prefix = ["\n"]) => {
+            let output = prefix.join("") + createServerEntry(parent)
+            for (let i = 0; i < servers.length; i++) {
+                if (parentByIndex[i] != parent) continue
+                let newPrefix = prefix.slice()
+                const appearsAgain = parentByIndex.slice(i + 1).includes(parentByIndex[i]),
+                    lastElementIndex = newPrefix.length - 1
+
+                newPrefix.push(appearsAgain ? "├╴" : "└╴")
+
+                newPrefix[lastElementIndex] = newPrefix[lastElementIndex].replace("├╴", "│ ").replace("└╴", "  ")
+                output += buildOutput(servers[i], newPrefix)
+            }
+
+            return output
+        },
+        ordering = (serverA, serverB) => {
+            // Sort servers with fewer connections towards the top.
+            let orderNumber = ns.scan(serverA).length - ns.scan(serverB).length
+            // Purchased servers to the very top
+            orderNumber = orderNumber != 0 ? orderNumber
+                : serverInfo(serverB).purchasedByPlayer - serverInfo(serverA).purchasedByPlayer
+            // Hack: compare just the first 2 chars to keep purchased servers in order purchased
+            orderNumber = orderNumber != 0 ? orderNumber
+                : serverA.slice(0, 2).toLowerCase().localeCompare(serverB.slice(0, 2).toLowerCase())
+
+            return orderNumber
         }
-        return o;
-    };
-    for (let i = 0, j; i < s.length; i++)
-        for (j of ns.scan(s[i]))
-            if (!s.includes(j)) s.push(j), p.push(s[i]), r[j] = r[s[i]] + ";connect " + j;
-    tprint(`<div class="sc new">${addSc()}</div>`);
-    doc.querySelectorAll(".sc.new .s").forEach(q => q.addEventListener('click', tcommand.bind(null, r[q.childNodes[0].nodeValue])));
-    doc.querySelector(".sc.new").classList.remove("new");
-};
+
+    // refresh css (in case it changed)
+    doc.getElementById("scanCSS")?.remove()
+    doc.head.insertAdjacentHTML('beforeend', css)
+    let servers = ["home"],
+        parentByIndex = [""],
+        routes = { home: "home" }
+    for (let server of servers)
+        for (let oneScanResult of ns.scan(server).sort(ordering))
+            if (!servers.includes(oneScanResult)) {
+                const backdoored = serverInfo(oneScanResult)?.backdoorInstalled
+                servers.push(oneScanResult)
+                parentByIndex.push(server)
+                routes[oneScanResult] = backdoored ? "connect " + oneScanResult : routes[server] + ";connect " + oneScanResult
+            }
+
+    terminalInsert(`<div class="serverscan new">${buildOutput()}</div>`)
+    doc.querySelectorAll(".serverscan.new .server").forEach(serverEntry => serverEntry
+        .addEventListener('click', setNavCommand.bind(null, routes[serverEntry.childNodes[0].nodeValue])))
+    doc.querySelectorAll(".serverscan.new .backdoor").forEach(backdoorButton => backdoorButton
+        .addEventListener('click', setNavCommand.bind(null, routes[backdoorButton.parentNode.childNodes[0].childNodes[0].nodeValue] + ";backdoor")))
+    doc.querySelector(".serverscan.new").classList.remove("new")
+}
