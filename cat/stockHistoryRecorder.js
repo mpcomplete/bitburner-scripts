@@ -1,5 +1,5 @@
-import { MAX_STOCK_HISTORY_RECORD, STOCK_HISTORY_LOGS_PREFIX } from "/libs/constants";
-import { NetscriptExtension } from "/libs/NetscriptExtension";
+import { MAX_STOCK_HISTORY_RECORD, STOCK_HISTORY_LOGS_PREFIX } from "src/cat/libs/constants";
+import { NetscriptExtension } from "src/cat/libs/NetscriptExtension";
 let nsx;
 async function main(ns) {
   nsx = new NetscriptExtension(ns);

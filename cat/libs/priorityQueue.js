@@ -2,7 +2,7 @@
  * @copyright 2020 Eyas Ranjous <eyas.ranjous@gmail.com>
  * @license MIT
  */
-import { Heap } from "/libs/heap";
+import { Heap } from "src/cat/libs/heap";
 class PriorityQueue {
   /**
    * Creates a priority queue

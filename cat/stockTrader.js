@@ -1,5 +1,5 @@
-import { STOCK_MARKET_COMMISSION_FEE } from "/libs/constants";
-import { NetscriptExtension } from "/libs/NetscriptExtension";
+import { STOCK_MARKET_COMMISSION_FEE } from "src/cat/libs/constants";
+import { NetscriptExtension } from "src/cat/libs/NetscriptExtension";
 const defaultConfig = {
   reservedMoney: 1e6,
   buyLongThreshold: 0.6,

@@ -1,6 +1,6 @@
-import { assertIsNumber } from "/libs/utils";
-import { DEFAULT_EXP_FARM_TARGETS, GROW_SCRIPT_NAME, LOG_FOLDER, WEAKEN_SCRIPT_NAME } from "/libs/constants";
-import { NetscriptExtension } from "/libs/NetscriptExtension";
+import { assertIsNumber } from "src/cat/libs/utils";
+import { DEFAULT_EXP_FARM_TARGETS, GROW_SCRIPT_NAME, LOG_FOLDER, WEAKEN_SCRIPT_NAME } from "src/cat/libs/constants";
+import { NetscriptExtension } from "src/cat/libs/NetscriptExtension";
 function autocomplete(data, flags) {
   return [...data.servers];
 }

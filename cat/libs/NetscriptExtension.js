@@ -1,4 +1,4 @@
-import { RESERVED_RAM_ON_HOME_SERVER, SHARE_SCRIPT_NAME, STOCK_MARKET_COMMISSION_FEE } from "/libs/constants";
+import { RESERVED_RAM_ON_HOME_SERVER, SHARE_SCRIPT_NAME, STOCK_MARKET_COMMISSION_FEE } from "src/cat/libs/constants";
 class NetscriptExtension {
   ns;
   atExitCallbacks = [];

@@ -1,7 +1,7 @@
-import { CityName, formatNumber } from "/corporationFormulas";
-import { cities, dummyDivisionNamePrefix, getCorporationUpgradeLevels, getDivisionResearches } from "/corporationUtils";
-import { isTestingToolsAvailable } from "/corporationTestingTools";
-import { mean } from "/libs/utils";
+import { CityName, formatNumber } from "src/cat/corporationFormulas";
+import { cities, dummyDivisionNamePrefix, getCorporationUpgradeLevels, getDivisionResearches } from "src/cat/corporationUtils";
+import { isTestingToolsAvailable } from "src/cat/corporationTestingTools";
+import { mean } from "src/cat/libs/utils";
 class CorporationEventLogger {
   constructor() {
     if (!globalThis.corporationEventCycle) {

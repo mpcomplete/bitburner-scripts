@@ -1,5 +1,5 @@
-import { WHRNG } from "/libs/RNG";
-import { parseNumber } from "/libs/utils";
+import { WHRNG } from "src/cat/libs/RNG";
+import { parseNumber } from "src/cat/libs/utils";
 let doc;
 let root;
 let gameRootElement;

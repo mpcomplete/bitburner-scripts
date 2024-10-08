@@ -1,7 +1,7 @@
 import {
   NetscriptExtension,
   parseAutoCompleteDataFromDefaultConfig
-} from "/libs/NetscriptExtension";
+} from "src/cat/libs/NetscriptExtension";
 import {
   buyOptimalAmountOfInputMaterials,
   buyTeaAndThrowPartyForAllDivisions,
@@ -14,9 +14,9 @@ import {
   validateProductMarkupMap,
   waitForNumberOfCycles,
   waitUntilAfterStateHappens
-} from "/corporationUtils";
-import { CorpState, UnlockName } from "/corporationFormulas";
-import { corporationEventLogger } from "/corporationEventLogger";
+} from "src/cat/corporationUtils";
+import { CorpState, UnlockName } from "src/cat/corporationFormulas";
+import { corporationEventLogger } from "src/cat/corporationEventLogger";
 function autocomplete(data, flags) {
   return parseAutoCompleteDataFromDefaultConfig(data, defaultConfig);
 }

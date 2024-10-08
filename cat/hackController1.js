@@ -1,4 +1,4 @@
-import { NetscriptExtension } from "/libs/NetscriptExtension";
+import { NetscriptExtension } from "src/cat/libs/NetscriptExtension";
 function autocomplete(data, flags) {
   return [...data.servers];
 }

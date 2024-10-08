@@ -3,7 +3,7 @@ import {
   isAbsolutePath,
   oneValidCharacter,
   resolveValidatedDirectory
-} from "/libs/paths/Directory";
+} from "src/cat/libs/paths/Directory";
 const filenameRegexString = `(?<file>${oneValidCharacter}+\\.${oneValidCharacter}+)$`;
 const basicFilePathRegex = new RegExp(directoryRegexString + filenameRegexString);
 function isFilePath(path) {

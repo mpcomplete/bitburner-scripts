@@ -1,7 +1,7 @@
-import * as acorn from "/libs/acorn";
-import * as walk from "/libs/walk";
-import { hasScriptExtension, resolveScriptFilePath } from "/libs/paths/ScriptFilePath";
-import { root } from "/libs/paths/Directory";
+import * as acorn from "src/cat/libs/acorn";
+import * as walk from "src/cat/libs/walk";
+import { hasScriptExtension, resolveScriptFilePath } from "src/cat/libs/paths/ScriptFilePath";
+import { root } from "src/cat/libs/paths/Directory";
 class Script {
   filename;
   code;

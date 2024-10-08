@@ -1,5 +1,5 @@
-import { PRIVATE_SERVER_NAME_PREFIX } from "/libs/constants";
-import { NetscriptExtension } from "/libs/NetscriptExtension";
+import { PRIVATE_SERVER_NAME_PREFIX } from "src/cat/libs/constants";
+import { NetscriptExtension } from "src/cat/libs/NetscriptExtension";
 let nsx;
 const defaultConfig = {
   reservedMoney: 1e6,

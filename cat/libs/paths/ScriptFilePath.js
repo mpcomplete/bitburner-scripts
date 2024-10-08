@@ -1,4 +1,4 @@
-import { resolveFilePath } from "/libs/paths/FilePath";
+import { resolveFilePath } from "src/cat/libs/paths/FilePath";
 const validScriptExtensions = [".js", ".script"];
 function resolveScriptFilePath(path, base = "", extensionToAdd) {
   if (extensionToAdd && !path.endsWith(extensionToAdd))

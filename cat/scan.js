@@ -1,5 +1,5 @@
 import { NetscriptExtension } from "libs/NetscriptExtension";
-import { PRIVATE_SERVER_NAME_PREFIX } from "/libs/constants";
+import { PRIVATE_SERVER_NAME_PREFIX } from "src/cat/libs/constants";
 function autocomplete(data, flags) {
   return ["simple", "full"];
 }
