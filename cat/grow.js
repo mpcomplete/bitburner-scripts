@@ -1,0 +1,13 @@
+async function main(ns) {
+  await ns.sleep(ns.args[1] || 1);
+  const hostname = ns.args[0];
+  if (ns.args.length >= 3) {
+    await ns.grow(hostname, { stock: ns.args[2] });
+  } else {
+    await ns.grow(hostname);
+  }
+}
+export {
+  main
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vc3JjL2dyb3cudHMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImltcG9ydCB7TlN9IGZyb20gXCJAbnNcIjtcclxuXHJcbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBtYWluKG5zOiBOUyk6IFByb21pc2U8dm9pZD4ge1xyXG4gICAgYXdhaXQgbnMuc2xlZXAoPG51bWJlcj5ucy5hcmdzWzFdIHx8IDEpO1xyXG4gICAgY29uc3QgaG9zdG5hbWUgPSA8c3RyaW5nPm5zLmFyZ3NbMF07XHJcbiAgICBpZiAobnMuYXJncy5sZW5ndGggPj0gMykge1xyXG4gICAgICAgIGF3YWl0IG5zLmdyb3coaG9zdG5hbWUsIHtzdG9jazogPGJvb2xlYW4+bnMuYXJnc1syXX0pO1xyXG4gICAgfSBlbHNlIHtcclxuICAgICAgICBhd2FpdCBucy5ncm93KGhvc3RuYW1lKTtcclxuICAgIH1cclxufVxyXG4iXSwKICAibWFwcGluZ3MiOiAiQUFFQSxlQUFzQixLQUFLLElBQXVCO0FBQzlDLFFBQU0sR0FBRyxNQUFjLEdBQUcsS0FBSyxDQUFDLEtBQUssQ0FBQztBQUN0QyxRQUFNLFdBQW1CLEdBQUcsS0FBSyxDQUFDO0FBQ2xDLE1BQUksR0FBRyxLQUFLLFVBQVUsR0FBRztBQUNyQixVQUFNLEdBQUcsS0FBSyxVQUFVLEVBQUMsT0FBZ0IsR0FBRyxLQUFLLENBQUMsRUFBQyxDQUFDO0FBQUEsRUFDeEQsT0FBTztBQUNILFVBQU0sR0FBRyxLQUFLLFFBQVE7QUFBQSxFQUMxQjtBQUNKOyIsCiAgIm5hbWVzIjogW10KfQo=

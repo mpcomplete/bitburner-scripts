@@ -1,0 +1,76 @@
+const CorpUpgradesData = {
+  "Smart Factories": {
+    "name": "Smart Factories",
+    "basePrice": 2e9,
+    "priceMult": 1.06,
+    "benefit": 0.03,
+    "desc": "Advanced AI automatically optimizes the operation and productivity of factories. Each level of this upgrade increases your global production by 3% (additive)."
+  },
+  "Smart Storage": {
+    "name": "Smart Storage",
+    "basePrice": 2e9,
+    "priceMult": 1.06,
+    "benefit": 0.1,
+    "desc": "Advanced AI automatically optimizes your warehouse storage methods. Each level of this upgrade increases your global warehouse storage size by 10% (additive)."
+  },
+  "DreamSense": {
+    "name": "DreamSense",
+    "basePrice": 4e9,
+    "priceMult": 1.1,
+    "benefit": 1e-3,
+    "desc": "Use DreamSense LCC Technologies to advertise your corporation to consumers through their dreams. Each level of this upgrade provides a passive increase in awareness of all of your companies (divisions) by 0.004 / market cycle,and in popularity by 0.001 / market cycle. A market cycle is approximately 10 seconds."
+  },
+  "Wilson Analytics": {
+    "name": "Wilson Analytics",
+    "basePrice": 4e9,
+    "priceMult": 2,
+    "benefit": 5e-3,
+    "desc": "Purchase data and analysis from Wilson, a marketing research firm. Each level of this upgrade increases the effectiveness of your advertising by 0.5% (additive)."
+  },
+  "Nuoptimal Nootropic Injector Implants": {
+    "name": "Nuoptimal Nootropic Injector Implants",
+    "basePrice": 1e9,
+    "priceMult": 1.06,
+    "benefit": 0.1,
+    "desc": "Purchase the Nuoptimal Nootropic Injector augmentation for your employees. Each level of this upgrade globally increases the creativity of your employees by 10% (additive)."
+  },
+  "Speech Processor Implants": {
+    "name": "Speech Processor Implants",
+    "basePrice": 1e9,
+    "priceMult": 1.06,
+    "benefit": 0.1,
+    "desc": "Purchase the Speech Processor augmentation for your employees. Each level of this upgrade globally increases the charisma of your employees by 10% (additive)."
+  },
+  "Neural Accelerators": {
+    "name": "Neural Accelerators",
+    "basePrice": 1e9,
+    "priceMult": 1.06,
+    "benefit": 0.1,
+    "desc": "Purchase the Neural Accelerator augmentation for your employees. Each level of this upgrade globally increases the intelligence of your employees by 10% (additive)."
+  },
+  "FocusWires": {
+    "name": "FocusWires",
+    "basePrice": 1e9,
+    "priceMult": 1.06,
+    "benefit": 0.1,
+    "desc": "Purchase the FocusWire augmentation for your employees. Each level of this upgrade globally increases the efficiency of your employees by 10% (additive)."
+  },
+  "ABC SalesBots": {
+    "name": "ABC SalesBots",
+    "basePrice": 1e9,
+    "priceMult": 1.07,
+    "benefit": 0.01,
+    "desc": "Always Be Closing. Purchase these robotic salesmen to increase the amount of materials and products you sell. Each level of this upgrade globally increases your sales by 1% (additive)."
+  },
+  "Project Insight": {
+    "name": "Project Insight",
+    "basePrice": 5e9,
+    "priceMult": 1.07,
+    "benefit": 0.05,
+    "desc": "Purchase 'Project Insight', a R&D service provided by the secretive Fulcrum Technologies. Each level of this upgrade globally increases the amount of Scientific Research you produce by 5% (additive)."
+  }
+};
+export {
+  CorpUpgradesData
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vLi4vc3JjL2RhdGEvQ29ycFVwZ3JhZGVzRGF0YS50cyJdLAogICJzb3VyY2VzQ29udGVudCI6IFsiZXhwb3J0IGNvbnN0IENvcnBVcGdyYWRlc0RhdGE6IHtcclxuICAgIFtVcGdyYWRlTmFtZTogc3RyaW5nXToge1xyXG4gICAgICAgIFwibmFtZVwiOiBzdHJpbmc7XHJcbiAgICAgICAgXCJiYXNlUHJpY2VcIjogbnVtYmVyO1xyXG4gICAgICAgIFwicHJpY2VNdWx0XCI6IG51bWJlcjtcclxuICAgICAgICBcImJlbmVmaXRcIjogbnVtYmVyO1xyXG4gICAgICAgIFwiZGVzY1wiOiBzdHJpbmc7XHJcbiAgICB9O1xyXG59ID0ge1xyXG4gICAgXCJTbWFydCBGYWN0b3JpZXNcIjoge1xyXG4gICAgICAgIFwibmFtZVwiOiBcIlNtYXJ0IEZhY3Rvcmllc1wiLFxyXG4gICAgICAgIFwiYmFzZVByaWNlXCI6IDIwMDAwMDAwMDAsXHJcbiAgICAgICAgXCJwcmljZU11bHRcIjogMS4wNixcclxuICAgICAgICBcImJlbmVmaXRcIjogMC4wMyxcclxuICAgICAgICBcImRlc2NcIjogXCJBZHZhbmNlZCBBSSBhdXRvbWF0aWNhbGx5IG9wdGltaXplcyB0aGUgb3BlcmF0aW9uIGFuZCBwcm9kdWN0aXZpdHkgb2YgZmFjdG9yaWVzLiBFYWNoIGxldmVsIG9mIHRoaXMgdXBncmFkZSBpbmNyZWFzZXMgeW91ciBnbG9iYWwgcHJvZHVjdGlvbiBieSAzJSAoYWRkaXRpdmUpLlwiXHJcbiAgICB9LFxyXG4gICAgXCJTbWFydCBTdG9yYWdlXCI6IHtcclxuICAgICAgICBcIm5hbWVcIjogXCJTbWFydCBTdG9yYWdlXCIsXHJcbiAgICAgICAgXCJiYXNlUHJpY2VcIjogMjAwMDAwMDAwMCxcclxuICAgICAgICBcInByaWNlTXVsdFwiOiAxLjA2LFxyXG4gICAgICAgIFwiYmVuZWZpdFwiOiAwLjEsXHJcbiAgICAgICAgXCJkZXNjXCI6IFwiQWR2YW5jZWQgQUkgYXV0b21hdGljYWxseSBvcHRpbWl6ZXMgeW91ciB3YXJlaG91c2Ugc3RvcmFnZSBtZXRob2RzLiBFYWNoIGxldmVsIG9mIHRoaXMgdXBncmFkZSBpbmNyZWFzZXMgeW91ciBnbG9iYWwgd2FyZWhvdXNlIHN0b3JhZ2Ugc2l6ZSBieSAxMCUgKGFkZGl0aXZlKS5cIlxyXG4gICAgfSxcclxuICAgIFwiRHJlYW1TZW5zZVwiOiB7XHJcbiAgICAgICAgXCJuYW1lXCI6IFwiRHJlYW1TZW5zZVwiLFxyXG4gICAgICAgIFwiYmFzZVByaWNlXCI6IDQwMDAwMDAwMDAsXHJcbiAgICAgICAgXCJwcmljZU11bHRcIjogMS4xLFxyXG4gICAgICAgIFwiYmVuZWZpdFwiOiAwLjAwMSxcclxuICAgICAgICBcImRlc2NcIjogXCJVc2UgRHJlYW1TZW5zZSBMQ0MgVGVjaG5vbG9naWVzIHRvIGFkdmVydGlzZSB5b3VyIGNvcnBvcmF0aW9uIHRvIGNvbnN1bWVycyB0aHJvdWdoIHRoZWlyIGRyZWFtcy4gRWFjaCBsZXZlbCBvZiB0aGlzIHVwZ3JhZGUgcHJvdmlkZXMgYSBwYXNzaXZlIGluY3JlYXNlIGluIGF3YXJlbmVzcyBvZiBhbGwgb2YgeW91ciBjb21wYW5pZXMgKGRpdmlzaW9ucykgYnkgMC4wMDQgLyBtYXJrZXQgY3ljbGUsYW5kIGluIHBvcHVsYXJpdHkgYnkgMC4wMDEgLyBtYXJrZXQgY3ljbGUuIEEgbWFya2V0IGN5Y2xlIGlzIGFwcHJveGltYXRlbHkgMTAgc2Vjb25kcy5cIlxyXG4gICAgfSxcclxuICAgIFwiV2lsc29uIEFuYWx5dGljc1wiOiB7XHJcbiAgICAgICAgXCJuYW1lXCI6IFwiV2lsc29uIEFuYWx5dGljc1wiLFxyXG4gICAgICAgIFwiYmFzZVByaWNlXCI6IDQwMDAwMDAwMDAsXHJcbiAgICAgICAgXCJwcmljZU11bHRcIjogMixcclxuICAgICAgICBcImJlbmVmaXRcIjogMC4wMDUsXHJcbiAgICAgICAgXCJkZXNjXCI6IFwiUHVyY2hhc2UgZGF0YSBhbmQgYW5hbHlzaXMgZnJvbSBXaWxzb24sIGEgbWFya2V0aW5nIHJlc2VhcmNoIGZpcm0uIEVhY2ggbGV2ZWwgb2YgdGhpcyB1cGdyYWRlIGluY3JlYXNlcyB0aGUgZWZmZWN0aXZlbmVzcyBvZiB5b3VyIGFkdmVydGlzaW5nIGJ5IDAuNSUgKGFkZGl0aXZlKS5cIlxyXG4gICAgfSxcclxuICAgIFwiTnVvcHRpbWFsIE5vb3Ryb3BpYyBJbmplY3RvciBJbXBsYW50c1wiOiB7XHJcbiAgICAgICAgXCJuYW1lXCI6IFwiTnVvcHRpbWFsIE5vb3Ryb3BpYyBJbmplY3RvciBJbXBsYW50c1wiLFxyXG4gICAgICAgIFwiYmFzZVByaWNlXCI6IDEwMDAwMDAwMDAsXHJcbiAgICAgICAgXCJwcmljZU11bHRcIjogMS4wNixcclxuICAgICAgICBcImJlbmVmaXRcIjogMC4xLFxyXG4gICAgICAgIFwiZGVzY1wiOiBcIlB1cmNoYXNlIHRoZSBOdW9wdGltYWwgTm9vdHJvcGljIEluamVjdG9yIGF1Z21lbnRhdGlvbiBmb3IgeW91ciBlbXBsb3llZXMuIEVhY2ggbGV2ZWwgb2YgdGhpcyB1cGdyYWRlIGdsb2JhbGx5IGluY3JlYXNlcyB0aGUgY3JlYXRpdml0eSBvZiB5b3VyIGVtcGxveWVlcyBieSAxMCUgKGFkZGl0aXZlKS5cIlxyXG4gICAgfSxcclxuICAgIFwiU3BlZWNoIFByb2Nlc3NvciBJbXBsYW50c1wiOiB7XHJcbiAgICAgICAgXCJuYW1lXCI6IFwiU3BlZWNoIFByb2Nlc3NvciBJbXBsYW50c1wiLFxyXG4gICAgICAgIFwiYmFzZVByaWNlXCI6IDEwMDAwMDAwMDAsXHJcbiAgICAgICAgXCJwcmljZU11bHRcIjogMS4wNixcclxuICAgICAgICBcImJlbmVmaXRcIjogMC4xLFxyXG4gICAgICAgIFwiZGVzY1wiOiBcIlB1cmNoYXNlIHRoZSBTcGVlY2ggUHJvY2Vzc29yIGF1Z21lbnRhdGlvbiBmb3IgeW91ciBlbXBsb3llZXMuIEVhY2ggbGV2ZWwgb2YgdGhpcyB1cGdyYWRlIGdsb2JhbGx5IGluY3JlYXNlcyB0aGUgY2hhcmlzbWEgb2YgeW91ciBlbXBsb3llZXMgYnkgMTAlIChhZGRpdGl2ZSkuXCJcclxuICAgIH0sXHJcbiAgICBcIk5ldXJhbCBBY2NlbGVyYXRvcnNcIjoge1xyXG4gICAgICAgIFwibmFtZVwiOiBcIk5ldXJhbCBBY2NlbGVyYXRvcnNcIixcclxuICAgICAgICBcImJhc2VQcmljZVwiOiAxMDAwMDAwMDAwLFxyXG4gICAgICAgIFwicHJpY2VNdWx0XCI6IDEuMDYsXHJcbiAgICAgICAgXCJiZW5lZml0XCI6IDAuMSxcclxuICAgICAgICBcImRlc2NcIjogXCJQdXJjaGFzZSB0aGUgTmV1cmFsIEFjY2VsZXJhdG9yIGF1Z21lbnRhdGlvbiBmb3IgeW91ciBlbXBsb3llZXMuIEVhY2ggbGV2ZWwgb2YgdGhpcyB1cGdyYWRlIGdsb2JhbGx5IGluY3JlYXNlcyB0aGUgaW50ZWxsaWdlbmNlIG9mIHlvdXIgZW1wbG95ZWVzIGJ5IDEwJSAoYWRkaXRpdmUpLlwiXHJcbiAgICB9LFxyXG4gICAgXCJGb2N1c1dpcmVzXCI6IHtcclxuICAgICAgICBcIm5hbWVcIjogXCJGb2N1c1dpcmVzXCIsXHJcbiAgICAgICAgXCJiYXNlUHJpY2VcIjogMTAwMDAwMDAwMCxcclxuICAgICAgICBcInByaWNlTXVsdFwiOiAxLjA2LFxyXG4gICAgICAgIFwiYmVuZWZpdFwiOiAwLjEsXHJcbiAgICAgICAgXCJkZXNjXCI6IFwiUHVyY2hhc2UgdGhlIEZvY3VzV2lyZSBhdWdtZW50YXRpb24gZm9yIHlvdXIgZW1wbG95ZWVzLiBFYWNoIGxldmVsIG9mIHRoaXMgdXBncmFkZSBnbG9iYWxseSBpbmNyZWFzZXMgdGhlIGVmZmljaWVuY3kgb2YgeW91ciBlbXBsb3llZXMgYnkgMTAlIChhZGRpdGl2ZSkuXCJcclxuICAgIH0sXHJcbiAgICBcIkFCQyBTYWxlc0JvdHNcIjoge1xyXG4gICAgICAgIFwibmFtZVwiOiBcIkFCQyBTYWxlc0JvdHNcIixcclxuICAgICAgICBcImJhc2VQcmljZVwiOiAxMDAwMDAwMDAwLFxyXG4gICAgICAgIFwicHJpY2VNdWx0XCI6IDEuMDcsXHJcbiAgICAgICAgXCJiZW5lZml0XCI6IDAuMDEsXHJcbiAgICAgICAgXCJkZXNjXCI6IFwiQWx3YXlzIEJlIENsb3NpbmcuIFB1cmNoYXNlIHRoZXNlIHJvYm90aWMgc2FsZXNtZW4gdG8gaW5jcmVhc2UgdGhlIGFtb3VudCBvZiBtYXRlcmlhbHMgYW5kIHByb2R1Y3RzIHlvdSBzZWxsLiBFYWNoIGxldmVsIG9mIHRoaXMgdXBncmFkZSBnbG9iYWxseSBpbmNyZWFzZXMgeW91ciBzYWxlcyBieSAxJSAoYWRkaXRpdmUpLlwiXHJcbiAgICB9LFxyXG4gICAgXCJQcm9qZWN0IEluc2lnaHRcIjoge1xyXG4gICAgICAgIFwibmFtZVwiOiBcIlByb2plY3QgSW5zaWdodFwiLFxyXG4gICAgICAgIFwiYmFzZVByaWNlXCI6IDUwMDAwMDAwMDAsXHJcbiAgICAgICAgXCJwcmljZU11bHRcIjogMS4wNyxcclxuICAgICAgICBcImJlbmVmaXRcIjogMC4wNSxcclxuICAgICAgICBcImRlc2NcIjogXCJQdXJjaGFzZSAnUHJvamVjdCBJbnNpZ2h0JywgYSBSJkQgc2VydmljZSBwcm92aWRlZCBieSB0aGUgc2VjcmV0aXZlIEZ1bGNydW0gVGVjaG5vbG9naWVzLiBFYWNoIGxldmVsIG9mIHRoaXMgdXBncmFkZSBnbG9iYWxseSBpbmNyZWFzZXMgdGhlIGFtb3VudCBvZiBTY2llbnRpZmljIFJlc2VhcmNoIHlvdSBwcm9kdWNlIGJ5IDUlIChhZGRpdGl2ZSkuXCJcclxuICAgIH1cclxufTsiXSwKICAibWFwcGluZ3MiOiAiQUFBTyxNQUFNLG1CQVFUO0FBQUEsRUFDQSxtQkFBbUI7QUFBQSxJQUNmLFFBQVE7QUFBQSxJQUNSLGFBQWE7QUFBQSxJQUNiLGFBQWE7QUFBQSxJQUNiLFdBQVc7QUFBQSxJQUNYLFFBQVE7QUFBQSxFQUNaO0FBQUEsRUFDQSxpQkFBaUI7QUFBQSxJQUNiLFFBQVE7QUFBQSxJQUNSLGFBQWE7QUFBQSxJQUNiLGFBQWE7QUFBQSxJQUNiLFdBQVc7QUFBQSxJQUNYLFFBQVE7QUFBQSxFQUNaO0FBQUEsRUFDQSxjQUFjO0FBQUEsSUFDVixRQUFRO0FBQUEsSUFDUixhQUFhO0FBQUEsSUFDYixhQUFhO0FBQUEsSUFDYixXQUFXO0FBQUEsSUFDWCxRQUFRO0FBQUEsRUFDWjtBQUFBLEVBQ0Esb0JBQW9CO0FBQUEsSUFDaEIsUUFBUTtBQUFBLElBQ1IsYUFBYTtBQUFBLElBQ2IsYUFBYTtBQUFBLElBQ2IsV0FBVztBQUFBLElBQ1gsUUFBUTtBQUFBLEVBQ1o7QUFBQSxFQUNBLHlDQUF5QztBQUFBLElBQ3JDLFFBQVE7QUFBQSxJQUNSLGFBQWE7QUFBQSxJQUNiLGFBQWE7QUFBQSxJQUNiLFdBQVc7QUFBQSxJQUNYLFFBQVE7QUFBQSxFQUNaO0FBQUEsRUFDQSw2QkFBNkI7QUFBQSxJQUN6QixRQUFRO0FBQUEsSUFDUixhQUFhO0FBQUEsSUFDYixhQUFhO0FBQUEsSUFDYixXQUFXO0FBQUEsSUFDWCxRQUFRO0FBQUEsRUFDWjtBQUFBLEVBQ0EsdUJBQXVCO0FBQUEsSUFDbkIsUUFBUTtBQUFBLElBQ1IsYUFBYTtBQUFBLElBQ2IsYUFBYTtBQUFBLElBQ2IsV0FBVztBQUFBLElBQ1gsUUFBUTtBQUFBLEVBQ1o7QUFBQSxFQUNBLGNBQWM7QUFBQSxJQUNWLFFBQVE7QUFBQSxJQUNSLGFBQWE7QUFBQSxJQUNiLGFBQWE7QUFBQSxJQUNiLFdBQVc7QUFBQSxJQUNYLFFBQVE7QUFBQSxFQUNaO0FBQUEsRUFDQSxpQkFBaUI7QUFBQSxJQUNiLFFBQVE7QUFBQSxJQUNSLGFBQWE7QUFBQSxJQUNiLGFBQWE7QUFBQSxJQUNiLFdBQVc7QUFBQSxJQUNYLFFBQVE7QUFBQSxFQUNaO0FBQUEsRUFDQSxtQkFBbUI7QUFBQSxJQUNmLFFBQVE7QUFBQSxJQUNSLGFBQWE7QUFBQSxJQUNiLGFBQWE7QUFBQSxJQUNiLFdBQVc7QUFBQSxJQUNYLFFBQVE7QUFBQSxFQUNaO0FBQ0o7IiwKICAibmFtZXMiOiBbXQp9Cg==

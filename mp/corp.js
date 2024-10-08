@@ -1,4 +1,4 @@
-import { formatMoney } from '/alain/helpers.js'
+import { formatMoney } from 'src/helpers.js'
 
 /** @type NS **/
 let ns;
@@ -43,21 +43,20 @@ export async function main(_ns) {
 
   const corp = ns.corporation.getCorporation();
   const division = pickDivision(corp);
-  const divName = divName;
+  const divName = division.name;
   totalCost = 0;
 
-  let aDiv = corp.divisions.find(d => d.type == 'Agriculture');
-  let tDiv = corp.divisions.find(d => d.type == 'Tobacco');
+  let aDiv = corp.divisions.find(dn => ns.corporation.getDivision(dn).type == 'Agriculture');
   if (options.s) {
     ns.tprint(`Selling all Agri materials: ${options.s} per cycle`);
-    for (var cityName of aDiv.cities) {
-      ns.corporation.sellMaterial(aDiv.name, cityName, 'Plants', options.sellAmt, 'MP');
-      ns.corporation.sellMaterial(aDiv.name, cityName, 'Food', options.sellAmt, 'MP');
+    for (var cityName of cities) {
+      ns.corporation.sellMaterial(aDiv, cityName, 'Plants', options.sellAmt, 'MP');
+      ns.corporation.sellMaterial(aDiv, cityName, 'Food', options.sellAmt, 'MP');
     }
   }
 
   if (division.type == 'Agriculture') {
-    const ups = options.fu || (options.phase == 0 ? 2 : 5);
+    const ups = options.fu || (options.phase == 0 ? 1 : 3);
     const upgradeGoals = {
       'Smart Factories': ups,
       'Smart Storage': 0,
@@ -71,7 +70,7 @@ export async function main(_ns) {
       'Project Insight': 0,
     }
     const employeeGoals = {
-      'other': options.phase == 0 ? [2, 1, 2, 1, 0] : [2, 1, 4, 1, 0],
+      'other': options.phase == 0 ? [1, 1, 1, 0, 0, 0] : [2, 1, 3, 1, 0, 1],
     };
     const materialGoals = { // ???
       'Hardware': 450 * options.mm,
@@ -80,12 +79,12 @@ export async function main(_ns) {
       'Real Estate': 12000 * options.mm,
     }
 
-    await buyUpgrades(division, upgradeGoals);
-    await hireEmployees(division, employeeGoals, options.phase == 0);  // wait for morale before spending all our cash in first phase
-    await setupWarehouse(division, materialGoals, options.phase == 0 ? 600 : 1400);
+    await buyUpgrades(divName, upgradeGoals);
+    await hireEmployees(divName, employeeGoals, options.phase == 0);  // wait for morale before spending all our cash in first phase
+    await setupWarehouse(divName, materialGoals, options.phase == 0 ? 400 : 800);
   } else if (division.type == 'Tobacco') {
-    const aevum = [10, 25, 40][options.phase];
-    const researchers = [10, 60, 90][options.phase];
+    const aevum = [15, 20, 40][options.phase];
+    const researchers = [10, 40, 90][options.phase];
     const ups = options.fu || [10, 25, 75][options.phase];
     const upgradeGoals = {
       'Smart Factories': 10,
@@ -100,8 +99,8 @@ export async function main(_ns) {
       'Project Insight': 0,
     };
     const employeeGoals = {
-      'Aevum': [aevum, aevum, aevum, aevum, aevum],
-      'other': [2, 2, 2, 2, researchers],
+      'Aevum': [aevum, aevum, aevum, aevum, aevum, Math.floor(aevum/10)],
+      'other': [1, 1, 1, 1, researchers, Math.floor(researchers/10)],
     };
     const materialGoals = { //costs $40b
       'Hardware': 2000 * options.mm,
@@ -111,7 +110,7 @@ export async function main(_ns) {
     }
     await buyUpgrades(divName, upgradeGoals);
     await hireEmployees(divName, employeeGoals, false);
-    await setupWarehouse(divName, materialGoals, options.phase == 0 ? 2500 : 10000);
+    await setupWarehouse(divName, materialGoals, options.phase == 0 ? 2500 : 5000);
   }
   ns.tprint(`Corp costs: ${formatMoney(totalCost)}`);
 }
@@ -123,24 +122,24 @@ function addCost(str, cost) {
 
 /** @param {Corporation} corp **/
 function pickDivision(corp) {
-  let division;
+  let divName = 'A';
   if (corp.divisions.length == 0) {
     ns.corporation.expandIndustry('Agriculture', 'A');
-    division = ns.corporation.getDivision('A');
   } else if (corp.divisions.length == 1) {
-    division = corp.divisions[0];
+    divName = corp.divisions[0];
   } else {
-    division = corp.divisions.find(d => d.type == 'Tobacco');
+    let divs = corp.divisions.map(dn => ns.corporation.getDivision(dn));
+    divName = divs.find(d => d.type == 'Tobacco').name;
   }
 
   // One-time setup.
-  let divName = division.name;
-  if (!ns.corporation.hasUnlockUpgrade('Smart Supply'))
-    ns.corporation.unlockUpgrade('Smart Supply');
+  let division = ns.corporation.getDivision(divName);
+  if (!ns.corporation.hasUnlock('Smart Supply'))
+    ns.corporation.purchaseUnlock('Smart Supply');
   if (ns.corporation.getHireAdVertCount(divName) < 1)
     ns.corporation.hireAdVert(divName);
   for (var cityName of cities) {
-    if (!cities.includes(cityName))
+    if (!division.cities.includes(cityName))
       ns.corporation.expandCity(divName, cityName);
     if (!ns.corporation.hasWarehouse(divName, cityName))
       ns.corporation.purchaseWarehouse(divName, cityName);
@@ -176,7 +175,6 @@ async function hireEmployees(divName, employeeGoals, waitForMorale) {
     }
   }
   // Hire and assign employees.
-  let jobPromises = [];
   for (var cityName of cities) {
     while (ns.corporation.hireEmployee(divName, cityName))
       ;
@@ -190,37 +188,19 @@ async function hireEmployees(divName, employeeGoals, waitForMorale) {
 }
 
 async function assignJob(divName, cityName, employeeGoals) {
-  const jobNames = ['Operations', 'Engineer', 'Business', 'Management', 'Research & Development'];
-
-  let office = ns.corporation.getOffice(divName, cityName);
+  const jobNames = ['Operations', 'Engineer', 'Business', 'Management', 'Research & Development', 'Intern'];
   let goals = employeeGoals[cityName] || employeeGoals['other'];
-  let jobCounts = {};
-  office.employees.forEach((ename) => {
-    let e = ns.corporation.getEmployee(divName, cityName, ename);
-    jobCounts[e.pos] = (jobCounts[e.pos] || 0) + 1;
-  });
-  let employee = office.employees.find((ename) => {
-    let e = ns.corporation.getEmployee(divName, cityName, ename);
-    return e.pos == 'Unassigned';
-  });
-  let jobIndex = goals.findIndex((_, i) => (jobCounts[jobNames[i]] || 0) < goals[i]);
-  if (jobIndex >= 0 && employee) {
-    let job = jobNames[jobIndex];
-    ns.tprint(`${cityName}: Assigned to ${job}`);
-    await ns.corporation.assignJob(divName, cityName, employee, job);
-    return true;
-  }
+  for (var i = 0; i < 6; i++)
+    ns.corporation.setAutoJobAssignment(divName, cityName, jobNames[i], 0);
+  for (var i = 0; i < 6; i++)
+    ns.corporation.setAutoJobAssignment(divName, cityName, jobNames[i], goals[i]);
   return false;
 }
 
 async function waitForEmployeeMorale(divName, cityName) {
   let office = ns.corporation.getOffice(divName, cityName);
-  const avgProd = office.employees.reduce((total, ename) => {
-    const e = ns.corporation.getEmployee(divName, cityName, ename);
-    return total + (e.ene + e.hap + e.mor)/3 / office.employees.length;
-  }, 0);
-  if (avgProd < 95) {
-    ns.tprint(`Waiting for employee morale in to hit 95%. Current average in ${cityName}: ${avgProd}.`);
+  if (office.avgMorale < 95) {
+    ns.tprint(`Waiting for employee morale in to hit 95%. Current average in ${cityName}: ${office.avgMorale}.`);
     await ns.sleep(10000);
     return true;
   }
@@ -244,18 +224,14 @@ async function setupWarehouse(divName, materialGoals, warehouseSize) {
       }
     }
   }
-  for (let i = 0; i < 2; i++) {
-    for (var cityName of cities) {
-      for (var matName of Object.keys(materialGoals)) {
-        let mat = ns.corporation.getMaterial(divName, cityName, matName);
-        let need = i == 1 ? 0 : Math.max(0, materialGoals[matName] - mat.qty);
-        if (i == 0 && need > 0)
-          ns.tprint(`Buying ${need} ${matName} in ${cityName}; have ${mat.qty}, want ${materialGoals[matName]}`);
-        if (!options.noBuys)
-          ns.corporation.buyMaterial(divName, cityName, matName, need / 10);
-      }
+  for (var cityName of cities) {
+    for (var matName of Object.keys(materialGoals)) {
+      let mat = ns.corporation.getMaterial(divName, cityName, matName);
+      let need = Math.max(0, materialGoals[matName] - mat.stored);
+      if (need > 0)
+        ns.tprint(`Buying ${need} ${matName} in ${cityName}; have ${mat.stored}, want ${materialGoals[matName]}`);
+      if (!options.noBuys)
+        ns.corporation.bulkPurchase(divName, cityName, matName, need);
     }
-    if (!options.noBuys)
-      await ns.sleep(10000);
   }
 }

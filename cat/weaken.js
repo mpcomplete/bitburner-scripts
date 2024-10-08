@@ -1,0 +1,8 @@
+async function main(ns) {
+  await ns.sleep(ns.args[1] || 1);
+  await ns.weaken(ns.args[0]);
+}
+export {
+  main
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsiLi4vc3JjL3dlYWtlbi50cyJdLAogICJzb3VyY2VzQ29udGVudCI6IFsiaW1wb3J0IHtOU30gZnJvbSBcIkBuc1wiO1xyXG5cclxuZXhwb3J0IGFzeW5jIGZ1bmN0aW9uIG1haW4obnM6IE5TKTogUHJvbWlzZTx2b2lkPiB7XHJcbiAgICBhd2FpdCBucy5zbGVlcCg8bnVtYmVyPm5zLmFyZ3NbMV0gfHwgMSk7XHJcbiAgICBhd2FpdCBucy53ZWFrZW4oPHN0cmluZz5ucy5hcmdzWzBdKTtcclxufVxyXG4iXSwKICAibWFwcGluZ3MiOiAiQUFFQSxlQUFzQixLQUFLLElBQXVCO0FBQzlDLFFBQU0sR0FBRyxNQUFjLEdBQUcsS0FBSyxDQUFDLEtBQUssQ0FBQztBQUN0QyxRQUFNLEdBQUcsT0FBZSxHQUFHLEtBQUssQ0FBQyxDQUFDO0FBQ3RDOyIsCiAgIm5hbWVzIjogW10KfQo=
