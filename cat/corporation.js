@@ -478,7 +478,11 @@ async function round3(option = PrecalculatedRound3Option.OPTION1) {
     throw new Error("You need to sell 1 division");
   }
   await createDivision(ns, DivisionName.TOBACCO, 3, 1);
-  createDummyDivisions(ns, 20 - ns.corporation.getCorporation().divisions.length);
+  try {
+    createDummyDivisions(ns, 20 - ns.corporation.getCorporation().divisions.length);
+  } catch (reason) {
+    ns.print(`Failed to create 20 dummy divisions: ${reason}`);
+  }
   for (const city of cities) {
     ns.corporation.cancelExportMaterial(DivisionName.AGRICULTURE, city, DivisionName.TOBACCO, city, "Plants");
     ns.corporation.exportMaterial(DivisionName.AGRICULTURE, city, DivisionName.TOBACCO, city, "Plants", exportString);
@@ -646,6 +650,9 @@ async function improveAllDivisions() {
           cycleCount += corporationEventLogger.cycle - currentCycle;
           console.log(
             `Cycle: ${cycleCount}. Accept offer: ${ns.formatNumber(ns.corporation.getInvestmentOffer().funds)}`
+          );
+          ns.print(
+            `Cycle: ${cycleCount}. Accept offer: ${ns.formatNumber(ns.corporation.getInvestmentOffer().funds)}; Expected ${expectedOffer}`
           );
           corporationEventLogger.generateOfferAcceptanceEvent(ns);
           ns.corporation.acceptInvestmentOffer();
@@ -1418,9 +1425,9 @@ async function test() {
 }
 async function main(nsContext) {
   init(nsContext);
-  if (ns.getResetInfo().currentNode !== 3) {
-    throw new Error("This script is specialized for BN3");
-  }
+  // if (ns.getResetInfo().currentNode !== 3) {
+  //   throw new Error("This script is specialized for BN3");
+  // }
   config = ns.flags(defaultConfig);
   if (config.help === true) {
     ns.tprint(`Default config: ${defaultConfig}`);

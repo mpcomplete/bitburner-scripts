@@ -15,7 +15,7 @@ import {
   Logger,
   sampleProductName
 } from "src/cat/corporationUtils";
-import { generateBlobUrl } from "/scriptUtils";
+import { generateBlobUrl } from "src/cat/scriptUtils";
 let workerModuleUrl = new CorporationOptimizer().getScriptUrl();
 async function validateWorkerModuleUrl(ns) {
   let fetchResult;

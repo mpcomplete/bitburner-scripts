@@ -13,6 +13,7 @@ let options; // The options used at construction time
 const argsSchema = [ // The set of all command line arguments
     ['next-bn', 0], // If we destroy the current BN, the next BN to start
     ['disable-auto-destroy-bn', false], // Set to true if you do not want to auto destroy this BN when done
+    ['disable-install-augs', false], // For every hour since the last reset, require this many fewer augs to install.
     ['install-at-aug-count', 11], // Automatically install when we can afford this many new augmentations (with NF only counting as 1)
     ['install-at-aug-plus-nf-count', 14], // or... automatically install when we can afford this many augmentations including additional levels of Neuroflux
     ['install-for-augs', ["The Red Pill"]], // or... automatically install as soon as we can afford one of these augmentations
@@ -491,6 +492,8 @@ function getFactionManagerOutput(ns) {
  * @param {NS} ns 
  * @param {Player} player */
 async function maybeInstallAugmentations(ns, player) {
+    if (options['disable-install-augs'])
+        return false;
     if (!(4 in unlockedSFs)) {
         setStatus(ns, `No singularity access, so you're on your own. You should manually work for factions and install augmentations!`);
         return false; // Cannot automate augmentations or installs without singularity
