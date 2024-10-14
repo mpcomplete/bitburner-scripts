@@ -24,7 +24,7 @@ let ns;
 let nsx;
 let config;
 const defaultConfig = [
-  ["maintainCorporation", false]
+  ["maintainCorporation", true]
 ];
 function init(nsContext) {
   ns = nsContext;
