@@ -118,6 +118,7 @@ async function startUp(ns) {
         log(ns, `WARNING: You only have SF4 level ${unlockedSFs[4]}. Without level 3, some singularity functions will be ` +
             `too expensive to run until you have bought a lot of home RAM.`, true);
     }
+    launchScriptHelper(ns, '/src/mp/autopilot.js', [], false);
     if (getTimeInBitnode() < 60 * 1000) // Skip initialization if we've been in the bitnode for more than 1 minute
         await initializeNewBitnode(ns, player);
 
