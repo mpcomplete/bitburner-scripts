@@ -1,9 +1,8 @@
 /** @param {NS} ns */
 export async function main(ns) {
-  var corp = ns.corporation.getCorporation();
-  if (!corp)
+  if (!ns.corporation.hasCorporation())
     return null;
-
+  var corp = ns.corporation.getCorporation();
   var numDivs = corp.divisions.length;
   if (numDivs >= 3) {
     ns.run("/src/cat/corporation.js", 1, "--improveAllDivisions");

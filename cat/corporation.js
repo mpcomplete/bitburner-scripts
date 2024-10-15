@@ -548,6 +548,12 @@ async function improveAllDivisions() {
       });
     }
   };
+  for (const city of cities) {
+    ns.corporation.cancelExportMaterial(DivisionName.AGRICULTURE, city, DivisionName.TOBACCO, city, "Plants");
+    ns.corporation.exportMaterial(DivisionName.AGRICULTURE, city, DivisionName.TOBACCO, city, "Plants", exportString);
+    ns.corporation.cancelExportMaterial(DivisionName.AGRICULTURE, city, DivisionName.CHEMICAL, city, "Plants");
+    ns.corporation.exportMaterial(DivisionName.AGRICULTURE, city, DivisionName.CHEMICAL, city, "Plants", exportString);
+  }
   await improveProductDivision(
     DivisionName.TOBACCO,
     ns.corporation.getCorporation().funds * 0.99 - 1e9,
